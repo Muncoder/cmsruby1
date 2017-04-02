@@ -1,0 +1,9 @@
+<div class="container">
+	<h1>All Categories</h1>
+	<hr>
+	<% @categories.each do |category| %>
+		<div class="well">
+			<%= category.name %>
+		</div>
+	<% end %>
+</div>
