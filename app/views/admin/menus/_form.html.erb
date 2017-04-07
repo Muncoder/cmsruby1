@@ -1,0 +1,21 @@
+	<%= form_for ["admin", @menu] do |f| %>
+		
+		<div class="form-group">
+			<%= f.label :name %>
+			<%= f.text_field :name, class: "form-control" %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :menu_items %>
+			<%= f.fields_for :menu_items do |c| %>
+				<p>
+					<%= c.text_field :title %>
+					<%= c.text_field :url %>
+					<%= c.hidden_field :id %>
+				</p>
+			<% end %>
+		</div>
+
+		<%= f.submit "Create", class: "btn btn-primary" %>
+
+	<% end %>

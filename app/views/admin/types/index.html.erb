@@ -1,0 +1,23 @@
+<div class="container">
+	<h1>Types</h1>
+	<hr>
+	<% @types.each do |type| %>
+		<ul>
+			<li>
+				<%= type.name %> -
+				<%= link_to "edit", edit_admin_type_path(type), class: "btn btn-primary btn-xs" %>
+				<%= link_to "delete", admin_type_path(type), method: :delete, data: {confirm: "Sure to Delete?"}, class: "btn btn-primary btn-xs" %>
+
+				<ul>
+					<% type.field_definitions.each do |field| %>
+						<li> <%= link_to field.key %> </li>
+					<% end %>
+				</ul>
+			</li>
+		</ul>
+	<% end %>
+
+	<hr>
+
+	<%= link_to "New Type", new_admin_type_path, class: "btn btn-primary" %>
+</div>

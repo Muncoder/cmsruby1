@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402085713) do
+ActiveRecord::Schema.define(version: 20170406150643) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -35,6 +35,42 @@ ActiveRecord::Schema.define(version: 20170402085713) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
+  create_table "field_definitions", force: :cascade do |t|
+    t.integer  "type_id"
+    t.string   "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "field_definitions", ["type_id"], name: "index_field_definitions_on_type_id"
+
+  create_table "fields", force: :cascade do |t|
+    t.integer  "page_id"
+    t.integer  "field_definition_id"
+    t.string   "value"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "fields", ["field_definition_id"], name: "index_fields_on_field_definition_id"
+  add_index "fields", ["page_id"], name: "index_fields_on_page_id"
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string   "title"
+    t.string   "url"
+    t.integer  "menu_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "menu_items", ["menu_id"], name: "index_menu_items_on_menu_id"
+
+  create_table "menus", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -42,6 +78,20 @@ ActiveRecord::Schema.define(version: 20170402085713) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
+    t.integer  "type_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

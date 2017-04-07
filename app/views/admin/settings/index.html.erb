@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+
+			<h1>Settings</h1>
+
+			<%= form_tag "/admin/settings", method: "put" do %>
+				<p>
+					<label for="">Homepage:</label>
+					<%= select_tag "setting[homepage]", homepage_options, class: "form-control" %>
+				</p>
+
+				<p>
+					<label for="">Theme:</label>
+					<%= select_tag "setting[theme]", theme_options, class: "form-control" %>
+				</p>
+
+				<%= submit_tag "Save Settings", class: "btn btn-primary" %>
+
+			<% end %>	
+
+		</div>
+	</div>
+</div>

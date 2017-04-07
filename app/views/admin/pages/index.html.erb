@@ -20,5 +20,9 @@
 	<% end %>
 
 	<hr>
-	<%= link_to "New Page", new_admin_page_path, class: "btn btn-primary" %>	
+	<%= link_to "New Page", new_admin_page_path, class: "btn btn-primary" %>
+	<% Type.all.each do |type| %>
+		<%= link_to "New #{type.name}", new_admin_page_path(type: type.name), class: "btn btn-default" %>	
+	<% end %>
+
 </div>
